@@ -1,24 +1,31 @@
 {
   "name": "gpm-build",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "前端脚手架－打包",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gpmjs/gpm-build.git"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gpmjs/gpm-build/issues"
   },
+  "bin": {
+    "gpm-build": "bin/gpm-build"
+  },
   "homepage": "https://github.com/gpmjs/gpm-build#readme",
   "dependencies": {
+    "bluebird": "^3.4.1",
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "win-spawn": "^2.0.0"
   }
 }

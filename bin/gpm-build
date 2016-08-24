@@ -1,47 +1,62 @@
 #!/usr/bin/env node
 
-require('colorful').colorful();
-
-var join = require('path').join;
-var exists = require('fs').existsSync;
+var chalk = require('chalk');
+var path = require('path');
+var exec = require('child_process').exec;
 var program = require('commander');
 var spawn = require('win-spawn');
+var Promise = require("bluebird");
+var fs = Promise.promisifyAll(require('fs-extra'));
 
-program
+var INIT_CWD = process.cwd();
+var FILE_NAME = 'gpmfile.js';
+
+(function copyFile(){
+   var targetFile = path.normalize(__dirname + 'bin//../lib/' + FILE_NAME);
+
+   fs.removeAsync(targetFile).then(function(err){
+      if (err) {
+        return console.error(err)
+      }
+   });
+
+   fs.copyAsync(path.normalize(INIT_CWD + '/' + FILE_NAME), targetFile)
+    .then(function(err){
+        if (err) {
+          return console.error(err)
+        }
+        fn();
+    });
+})();
+
+
+function fn(){
+  var gulpcmd = require('../lib/util/gulpcmd.js');
+  
+  program
     .version(require('../package').version, '-v, --version')
-    .usage('<command> [options]')
-    .on('--help', printHelp)
-    .parse(process.argv);
+      .usage('<command> [options]')
+      .on('--help', gulpcmd.printHelp)
+      .parse(process.argv);
 
-var subcmd = program.args[0];
-var bin;
+  var letter = 'cd ' + path.normalize(__dirname + 'bin//../');
+  var task = program.args[0];;
+  var cmd = 'gulp ' + task;
 
-switch(subcmd) {
-	case 'build':
-		bin = executable(subcmd);
-		wrap(spawn(bin, program.args, {stdio: 'inherit'}));
-		break;
-	default:
-		program.help();
-}
+  gulpcmd.execCmd(task, wrap, function(){
+      program.help();
+  });
 
-function printHelp() {
-	  console.log('  Package Commands:'.to.bold.green.color);
-  	console.log();
-  	console.log('    build           build the project');
-  	console.log();
-}
+  function wrap() {
+      var execCmd = letter + '&&' + cmd;
 
-function wrap(sp) {
-	sp.on('close', function(code) {
-	    process.exit(code);
-	});
-}
-
-function executable(subcmd) {
-    var file = join(__dirname, 'gpm-' + subcmd);
-
-    if (exists(file)) {
-        return file;
-    }
+      exec(execCmd, function(error, stdout, stderr){
+        if (error) {
+          console.log(stdout);
+          process.exit();
+        }
+        console.log(stdout);
+        process.exit();
+      });
+  }
 }
