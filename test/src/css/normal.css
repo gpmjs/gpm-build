@@ -1,0 +1,149 @@
+/* normal.css v1.0 
+ * 参考：https://github.com/necolas/normalize.css
+ */
+
+/*
+ * 1. 将浏览器的基准字号设置为62.5%，也就是10px，1rem = 10px; 
+ *    10px = 1em = 100% = 8pt
+ * 2. 防止 iOS 横屏字号放大，同时保证在PC上 zoom 功能正常
+ */
+
+html {
+	font-size: 62.5%; /* 1 */
+	-ms-text-size-adjust: 100%; /*2*/
+	-webkit-text-size-adjust: 100%; /*2*/
+	text-size-adjust: 100%;/*2*/
+}
+
+/*
+ * 修复浏览器默认边距，统一效果
+ * 参考：YUI CSS Reset
+ * 1. dt 默认没边距
+ * 2. li 默认没边距
+ * 3. code 默认没边距
+ * 4. th,td 默认padding:1px
+ */
+body, dl, dd, /* 1 */
+ul, ol, /*2*/
+h1, h2, h3, h4, h5, h6, pre, /*3*/
+form, fieldset, legend, input, textarea, optgroup,
+p, blockquote, figure, hr, menu, dir,
+thead, tbody, tfoot, th, td /*4*/
+{
+    margin:0;
+    padding:0;
+}
+
+/*
+ * 1. 定义全局字体
+	  参考：amazeui ui http://amazeui.org/css/typography
+ * 2. 修复表单元素不能继承字体样式
+ * 3. 使用 rem 设置字号，浏览器设置中改变字号时文字大小可以改变 
+ */
+body,   /*1*/
+input,select,button,textarea /*2*/
+{
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif; 
+	font-size: 14px;
+	font-size: 1.4rem; /* 3 */
+}
+
+input,select,textarea{
+	font-size:100%;
+}
+
+/*TODO*/
+/*body {
+	font-size: 14px;
+	font-size: 1.4rem; 
+	line-height: 1.8;
+}*/
+
+/*
+ * 1. 基本的链接样式（去除链接默认的下划线）
+ * 2. 去掉 IE 10+ 点击链接时的灰色背景
+ */
+a {
+    text-decoration: none;/*1*/
+}
+a:hover {
+    text-decoration: underline;/*1*/
+}
+a:active {
+    background-color: transparent; /*2*/
+}
+
+/*
+ * 去掉点击时的焦点框，同时保证使用键盘可以显示焦点框
+ */
+
+a:active,
+a:hover {
+	outline: 0 none;
+}
+
+/**
+ * 去掉列表前的标识, li会继承
+ */
+ul, ol {
+    list-style-type: none;
+    list-style-image: none;
+}
+
+/*
+ * 移除默认边框
+ */
+img,iframe{
+    border:0;
+}
+
+/*
+ * 移除单元格间距让其边重合 
+ */
+table{
+  border-collapse:collapse;
+  border-spacing:0;
+}
+
+/*
+ * 修复th不继承text-align，默认左对齐
+ */
+caption,th {
+  text-align:left;
+}
+
+
+/*
+ * 斜体扶正
+ */
+address,cite,dfn,em,var{
+    font-style:normal;
+}
+
+/*
+ * 统一引用标记
+ */
+q:before,q:after{
+    content:'';
+}
+
+/*
+ * 防止所有浏览器中的「sub」和「sup」影响行高
+ * http://jsbin.com/usoyal/1/edit
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}

@@ -19,12 +19,17 @@
   },
   "homepage": "https://github.com/gpmjs/gpm-build#readme",
   "dependencies": {
-    "bluebird": "^3.4.1",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9",
     "require-dir": "^0.3.0",
     "win-spawn": "^2.0.0"
   }

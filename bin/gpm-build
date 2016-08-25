@@ -29,10 +29,9 @@ var FILE_NAME = 'gpmfile.js';
     });
 })();
 
-
 function fn(){
   var gulpcmd = require('../lib/util/gulpcmd.js');
-  
+
   program
     .version(require('../package').version, '-v, --version')
       .usage('<command> [options]')
@@ -53,6 +52,7 @@ function fn(){
       exec(execCmd, function(error, stdout, stderr){
         if (error) {
           console.log(stdout);
+          console.log(error);
           process.exit();
         }
         console.log(stdout);
