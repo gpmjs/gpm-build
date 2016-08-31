@@ -11,6 +11,8 @@ var fs = Promise.promisifyAll(require('fs-extra'));
 var INIT_CWD = process.cwd();
 var FILE_NAME = 'gpmfile.js';
 
+process.env.GPM_INIT_CWD = INIT_CWD;
+
 (function copyFile(){
    var targetFile = path.normalize(__dirname + 'bin//../lib/' + FILE_NAME);
 
@@ -41,6 +43,8 @@ function fn(){
   var letter = 'cd ' + path.normalize(__dirname + 'bin//../');
   var task = program.args[0];;
   var cmd = 'gulp ' + task;
+
+  process.env.GPM_TASK = task;
 
   gulpcmd.execCmd(task, wrap, function(){
       program.help();
